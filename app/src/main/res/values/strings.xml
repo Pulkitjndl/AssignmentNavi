@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Closed PR</string>
+    <string name="error_text">An error occurred while loading Data.</string>
+    <string name="title">Title</string>
+    <string name="created_date">Created_Date</string>
+    <string name="closed_date">Closed_Date</string>
+    <string name="username">Username</string>
+</resources>
