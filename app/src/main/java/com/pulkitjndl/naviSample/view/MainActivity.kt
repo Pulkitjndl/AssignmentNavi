@@ -39,7 +39,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun observeViewModel(){
+    private fun observeViewModel(){
         viewModel.pullRequestList.observe(this, Observer { pullRequestList->
             pullRequestList?.let {
                 recyclerList.visibility = View.VISIBLE
