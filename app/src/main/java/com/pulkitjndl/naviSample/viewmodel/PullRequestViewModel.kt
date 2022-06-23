@@ -12,10 +12,10 @@ import io.reactivex.observers.DisposableSingleObserver
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
-class PullRequestViewModel :ViewModel() {
+class PullRequestViewModel : ViewModel() {
 
     @Inject
-    lateinit var service:PullRequestService
+    lateinit var service: PullRequestService
 
     init {
         DaggerApiComponent.create().inject(this)
@@ -24,20 +24,20 @@ class PullRequestViewModel :ViewModel() {
     private val disposable = CompositeDisposable()
 
     val pullRequestList = MutableLiveData<List<PullRequest>>()
-    val  pullRequestLoadError = MutableLiveData<Boolean>()
-    val loading  = MutableLiveData<Boolean>()
+    val pullRequestLoadError = MutableLiveData<Boolean>()
+    val loading = MutableLiveData<Boolean>()
 
-    fun refresh(){
+    fun refresh() {
         fetchPullRequest()
     }
 
-    private fun fetchPullRequest(){
+    private fun fetchPullRequest() {
         loading.value = true
         disposable.add(
             service.getPullRequest()
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribeWith(object :DisposableSingleObserver<List<PullRequest>>(){
+                .subscribeWith(object : DisposableSingleObserver<List<PullRequest>>() {
                     override fun onSuccess(value: List<PullRequest>) {
                         pullRequestList.value = value
                         pullRequestLoadError.value = false
@@ -45,7 +45,7 @@ class PullRequestViewModel :ViewModel() {
                     }
 
                     override fun onError(e: Throwable?) {
-                        Log.e("ErrorData",e.toString())
+                        Log.e("ErrorData", e.toString())
                         pullRequestLoadError.value = true
                         loading.value = false
                     }
