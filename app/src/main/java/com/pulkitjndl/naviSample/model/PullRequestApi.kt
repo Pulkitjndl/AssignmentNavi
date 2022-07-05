@@ -4,6 +4,6 @@ import io.reactivex.Single
 import retrofit2.http.GET
 
 interface PullRequestApi {
-      @GET("repos/Pulkitjndl/AssignmentNavi/pulls?state=closed")
+      @GET("repos/Pulkitjndl/AssignmentNavi/pulls?state=open")
     fun getPullRequest(): Single<List<PullRequest>>
 }
